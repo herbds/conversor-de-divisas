@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Divisas</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Conversor de divisas <span class="line-break">Sur América</span></h1>
+    <form id="convertirForm">
+        <label for="divisaOrigen">Divisa de Origen:</label>
+        <select name="divisaOrigen" id="divisaOrigen" required>
+            <option value="USD">USD (Dollar)</option>
+            <option value="EUR">EUR (Euro)</option>
+            <option value="ARS">ARS (Peso Argentino)</option>
+            <option value="BOB">BOB (Boliviano)</option>
+            <option value="BRL">BRL (Real Brasileño)</option>
+            <option value="COP">COP (Peso Colombiano)</option>
+            <option value="CLP">CLP (Peso Chileno)</option>
+            <option value="PEN">PEN (Nuevo Sol Peruano)</option>
+            <option value="PYG">PYG (Guaraní Paraguayo)</option>
+            <option value="UYU">UYU (Peso Uruguayo)</option>
+            <option value="GBP">GBP (Libra Esterlina)</option>
+        </select>
+
+        <label for="divisaDestino">Divisa de Destino:</label>
+        <select name="divisaDestino" id="divisaDestino" required>
+            <option value="USD">USD (Dollar)</option>
+            <option value="EUR">EUR (Euro)</option>
+            <option value="ARS">ARS (Peso Argentino)</option>
+            <option value="BOB">BOB (Boliviano)</option>
+            <option value="BRL">BRL (Real Brasileño)</option>
+            <option value="COP">COP (Peso Colombiano)</option>
+            <option value="CLP">CLP (Peso Chileno)</option>
+            <option value="PEN">PEN (Nuevo Sol Peruano)</option>
+            <option value="PYG">PYG (Guaraní Paraguayo)</option>
+            <option value="UYU">UYU (Peso Uruguayo)</option>
+            <option value="GBP">GBP (Libra Esterlina)</option>
+        </select>
+
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" name="cantidad" id="cantidad" required step="any">
+
+        <button type="submit">Convertir</button>
+    </form>
+
+    <div class="resultado" style="display: none;">
+        <p>Conversión: <span class="divisaOrigen"></span> a <span class="divisaDestino"></span> </p>
+        <p>Resultado conversión entre divisas: <span id="resultadoTexto"></span></p>
+        <p>La tasa de cambio utilizada: <span id="tasaCambioTexto"></span></p>
+    </div>
+</div>
+
+<script>
+    // Submit formulario
+    document.getElementById("convertirForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Evitar que se envíe el formulario tradicionalmente
+
+        const divisaOrigen = document.getElementById("divisaOrigen").value;
+        const divisaDestino = document.getElementById("divisaDestino").value;
+        const cantidad = parseFloat(document.getElementById("cantidad").value);
+
+        const tasaCambio = 1.2; // Supongamos que la tasa es 1.2 (por ejemplo)
+        const resultado = cantidad * tasaCambio;
+
+        document.querySelector(".resultado").style.display = "block";
+
+        document.querySelector(".divisaOrigen").innerText = divisaOrigen;
+        document.querySelector(".divisaDestino").innerText = divisaDestino;
+        document.getElementById("resultadoTexto").innerText = resultado.toFixed(2); // Redondeamos a 2 decimales
+        document.getElementById("tasaCambioTexto").innerText = tasaCambio.toFixed(2);
+    });
+</script>
+</body>
+</html>
