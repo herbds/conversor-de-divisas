@@ -16,7 +16,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 600px;  /* Aumentado para dar más espacio general */
 }
 
 h1 {
@@ -54,17 +54,27 @@ form button:hover {
     background-color: #45a049;
 }
 
+/* Aumentar el ancho del contenedor de resultados proporcionalmente */
 .resultado {
     margin-top: 20px;
     background-color: #e8f4e8;
     padding: 20px;
     border: 1px solid #d3e4d3;
     border-radius: 4px;
-}
-.line-break {
-  display: block;
+    width: 100%;  /* Asegura que ocupe el ancho completo disponible */
+    box-sizing: border-box;  /* Asegura que el padding se tenga en cuenta */
 }
 
 .resultado p {
     margin: 5px 0;
+}
+
+.resultado span {
+    font-size: 1.2em;  /* Aumenta el tamaño de los resultados numéricos */
+    font-weight: bold;
+    word-wrap: break-word;  /* Asegura que los textos largos se ajusten */
+}
+
+.line-break {
+  display: block;
 }

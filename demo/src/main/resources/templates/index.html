@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,9 @@
 </head>
 <body>
 <div class="container">
-    <h1>Conversor de divisas <span class="line-break">Sur América</span></h1>
-    <form id="convertirForm">
+    <h1>Conversor de Divisas</h1>
+
+    <form action="/" method="get">
         <label for="divisaOrigen">Divisa de Origen:</label>
         <select name="divisaOrigen" id="divisaOrigen" required>
             <option value="USD">USD (Dollar)</option>
@@ -41,37 +42,16 @@
         </select>
 
         <label for="cantidad">Cantidad:</label>
-        <input type="number" name="cantidad" id="cantidad" required step="any">
+        <input type="number" name="cantidad" id="cantidad" required step="any" value="1">
 
         <button type="submit">Convertir</button>
     </form>
 
-    <div class="resultado" style="display: none;">
-        <p>Conversión: <span class="divisaOrigen"></span> a <span class="divisaDestino"></span> </p>
-        <p>Resultado conversión entre divisas: <span id="resultadoTexto"></span></p>
-        <p>La tasa de cambio utilizada: <span id="tasaCambioTexto"></span></p>
+    <div class="resultado" style="margin-top: 20px;">
+        <p>Conversión: <span th:text="${divisaOrigen}">USD</span> a <span th:text="${divisaDestino}">USD</span></p>
+        <p>Resultado conversión entre divisas: <span th:text="${resultado}">0.00</span></p>
+        <p>La tasa de cambio utilizada: <span th:text="${tasaCambio}">1.00</span></p>
     </div>
 </div>
-
-<script>
-    // Submit formulario
-    document.getElementById("convertirForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Evitar que se envíe el formulario tradicionalmente
-
-        const divisaOrigen = document.getElementById("divisaOrigen").value;
-        const divisaDestino = document.getElementById("divisaDestino").value;
-        const cantidad = parseFloat(document.getElementById("cantidad").value);
-
-        const tasaCambio = 1.2; // Supongamos que la tasa es 1.2 (por ejemplo)
-        const resultado = cantidad * tasaCambio;
-
-        document.querySelector(".resultado").style.display = "block";
-
-        document.querySelector(".divisaOrigen").innerText = divisaOrigen;
-        document.querySelector(".divisaDestino").innerText = divisaDestino;
-        document.getElementById("resultadoTexto").innerText = resultado.toFixed(2); // Redondeamos a 2 decimales
-        document.getElementById("tasaCambioTexto").innerText = tasaCambio.toFixed(2);
-    });
-</script>
 </body>
 </html>
